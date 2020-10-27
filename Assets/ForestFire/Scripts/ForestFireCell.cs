@@ -38,7 +38,7 @@ public class ForestFireCell : MonoBehaviour
     public GameObject playerCamera; // reference to player camera
     public float fireVFXDistance; // float to set the maximum distance a fire vfx will be rendered at. this is used to improve rendering performance. 
 
-    private VisualEffect _fireVisualEffect; // reference to the fire vfx on the current fire object.
+    public VisualEffect _fireVisualEffect; // reference to the fire vfx on the current fire object.
 
     // Awake is a built-in Unity function that is only called once, before the Start function
     private void Awake()

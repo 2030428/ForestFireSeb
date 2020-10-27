@@ -25,10 +25,10 @@ public class ForestFire2D : MonoBehaviour
     public float updateRate; // used to define how often will the game update (in seconds)
     private float _gameTimer; // a variable that will be used detect when the game should update 
 
-    private Camera gameCamera; // the game camera pointing at the board
+    public Camera gameCamera; // the game camera pointing at the board
 
     // Awake is a built-in Unity function that is only called once, before the Start function
-    private void Awake()
+    public void Awake()
     {
         // find the camera in the scene and store it for later
         gameCamera = FindObjectOfType<Camera>();
