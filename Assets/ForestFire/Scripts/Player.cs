@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
 
     void FindingFireCells()
     {
-        if (FireCell = ForestFireCell.State.Alight)
+      //  if (FireCell = ForestFireCell.State.Alight)
 
         //   if (fireCell == ForestFireCell.State.Alight)
         {
