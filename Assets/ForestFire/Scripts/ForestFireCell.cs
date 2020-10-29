@@ -30,6 +30,8 @@ public class ForestFireCell : MonoBehaviour
     public GameObject treeObject; // reference to tree visual object
     public GameObject leaves; // reference to leaves visual object
     public GameObject rockObject; // reference to rock visual object
+    
+    public BoxCollider FireArea;        //reference to collider for fire detection
 
     public GameObject treeFireFVX; // reference to tree fire vfx
     public GameObject grassFireFVX; // reference to grass fire vfx
@@ -72,6 +74,9 @@ public class ForestFireCell : MonoBehaviour
         cellState = State.Tree;
         groundMeshRenderer.material = groundMaterialTree;
         treeObject.SetActive(true);
+        
+        FireArea.enabled = false;               //set box collider to inactive in this state
+
     }
 
     // change cell state to grass    
@@ -81,6 +86,9 @@ public class ForestFireCell : MonoBehaviour
         groundMeshRenderer.material = groundMaterialGrass;
         treeObject.SetActive(false);
         rockObject.SetActive(false);
+        
+        FireArea.enabled = false;               //set box collider to inactive in this state
+
     }
 
     // change cell state to rock
@@ -92,6 +100,8 @@ public class ForestFireCell : MonoBehaviour
             cellFuel = 0;
             groundMeshRenderer.material = groundMaterialRock;
             rockObject.SetActive(true);
+            
+            FireArea.enabled = false;               //set box collider to inactive in this state
         }
     }
 
@@ -108,6 +118,7 @@ public class ForestFireCell : MonoBehaviour
                 currentFire = Instantiate(treeFireFVX);
                 currentFire.transform.SetParent(gameObject.transform, true);
                 currentFire.transform.localPosition = Vector3.zero;
+
             }
             else // if the tree is not active, assign the grass vfx as the current fire object
             {
@@ -116,6 +127,8 @@ public class ForestFireCell : MonoBehaviour
             }
             // get a reference to the vfx component on the current fire object
             _fireVisualEffect = currentFire.GetComponent<VisualEffect>();
+            
+            FireArea.enabled = true;                //set box collider to active in this state
         }
     }
 
@@ -134,5 +147,8 @@ public class ForestFireCell : MonoBehaviour
 
         cellState = State.Burnt;
         groundMeshRenderer.material = groundMaterialBurnt;
+        
+       FireArea.enabled = false;               //set box collider to inactive in this state
+
     }
 }

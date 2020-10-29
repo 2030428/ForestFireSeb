@@ -28,6 +28,7 @@ public class ForestFire3D : MonoBehaviour
     private float _gameTimer; // a variable that will be used detect when the game should update 
 
     public Camera gameCamera; // the camera that is players viewport
+   // public Player player;
 
     // Awake is a built-in Unity function that is only called once, before the Start function
     public void Awake()
@@ -289,7 +290,9 @@ public class ForestFire3D : MonoBehaviour
                 forestFireCells[xCount, yCount] = forestFireCell;
                 
                  // add reference to camera
-                forestFireCell.playerCamera = gameCamera.gameObject;                
+                forestFireCell.playerCamera = gameCamera.gameObject;      
+                
+
 
                 ySpacing += 3;
             }

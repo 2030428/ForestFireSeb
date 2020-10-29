@@ -30,8 +30,66 @@ Transform:
   - {fileID: 4045407423715989335}
   - {fileID: 1865734669701587149}
   m_Father: {fileID: 5921467954205730206}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5853844329248246124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2208202635444462120}
+  - component: {fileID: 9096938345012457723}
+  - component: {fileID: 2345313521129468844}
+  m_Layer: 0
+  m_Name: FireArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2208202635444462120
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5853844329248246124}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 16, z: 0}
+  m_LocalScale: {x: 0.25, y: 10, z: 0.25}
+  m_Children: []
+  m_Father: {fileID: 5921467954205730206}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9096938345012457723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5853844329248246124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba67a94ca4059fe4188d7916fefb8740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireArea: {fileID: 2345313521129468844}
+--- !u!65 &2345313521129468844
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5853844329248246124}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8517016399536926406
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,6 +123,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 0.1, z: 4}
   m_Children:
+  - {fileID: 2208202635444462120}
   - {fileID: 977085435}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -150,8 +209,8 @@ MonoBehaviour:
   groundMaterialTree: {fileID: 2100000, guid: 5558b5711d37782468eeee5c2880e7d8, type: 2}
   treeObject: {fileID: 4045407423716281207}
   leaves: {fileID: 4045407423716281205}
-  grassObject: {fileID: 0}
   rockObject: {fileID: 8846265225297738733}
+  FireArea: {fileID: 2345313521129468844}
   treeFireFVX: {fileID: 4754294210375399161, guid: 88ca74c2fda62784d928ebacea7a6063,
     type: 3}
   grassFireFVX: {fileID: 7581294509281810365, guid: 728031911f0d2374c939b093c1ef2e75,
@@ -159,6 +218,7 @@ MonoBehaviour:
   currentFire: {fileID: 0}
   playerCamera: {fileID: 0}
   fireVFXDistance: 50
+  _fireVisualEffect: {fileID: 0}
 --- !u!114 &2395562120029711758
 MonoBehaviour:
   m_ObjectHideFlags: 0
