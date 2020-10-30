@@ -15,20 +15,6 @@ public class healthBar : MonoBehaviour
     public int maxHealth = 100;                                 //sets player max health
     public int currentHealth;                                   //creates a value for current player health
 
-    //void Start()
-    //{
-    //    currentHealth = maxHealth;                              //sets current health value
-    //    HealthBar.setMaxHealth(maxHealth);                      //  
-    //}
-
-    //void Update()
-    //{
-
-    //    TakeDamage(10);
-    //    Debug.Log(currentHealth);
-
-    //}
-
     public void setMaxHealth(int health)
     {
         healthSlider.maxValue = health;
@@ -42,10 +28,10 @@ public class healthBar : MonoBehaviour
         fill.color = Gradient.Evaluate(healthSlider.normalizedValue);
     }
 
-    void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-        HealthBar.SetHealth(currentHealth);
-    }
+    //void TakeDamage(int damage)
+    //{
+    //    currentHealth -= damage;
+    //    HealthBar.SetHealth(currentHealth);
+    //}
 
 }

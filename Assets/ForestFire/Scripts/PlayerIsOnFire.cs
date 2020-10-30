@@ -13,7 +13,7 @@ public class PlayerIsOnFire : MonoBehaviour
 
     public BoxCollider FireArea;
 
-    public bool takenAnyDamage;
+    public bool takenAnyDamage, ColorPauseActive, DamagePauseActive;
     public int maxHealth = 100;                                 //sets player max health
     public int currentHealth, damage;                                   //creates a value for current player health
     public int playerXint, playerYint, playerZint;
@@ -58,34 +58,23 @@ public class PlayerIsOnFire : MonoBehaviour
         Debug.Log(currentHealth);
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (takenAnyDamage == false)
-        {
-            StartCoroutine(DamagePause());
-        }
-    }
-
     void TakeDamage()
-    {
+    { 
         takenAnyDamage = true;
         damage = 10;
         currentHealth -= damage;
         HealthBar.SetHealth(currentHealth);
         DamageColor.transform.Translate(0.0f, 0.0f, +4.0f);
-        StartCoroutine(ColorPause());
-    }
+        StartCoroutine(ColorPause());        
+    }     
 
-    void ContinuousDamage()
+    IEnumerator ColorPause()
     {
+        Debug.Log("Coroutine working...");
+        yield return new WaitForSeconds(0.1f);
         takenAnyDamage = true;
-        damage = 10;
-        currentHealth -= damage;
-        HealthBar.SetHealth(currentHealth);
-        DamageColor.transform.Translate(0.0f, 0.0f, +4.0f);
-        StartCoroutine(ColorPause());
+        HasTakenDamage();
     }
-
     void HasTakenDamage()
     {
         if (takenAnyDamage)
@@ -94,19 +83,5 @@ public class PlayerIsOnFire : MonoBehaviour
             Debug.Log("Has now taken damage");
             takenAnyDamage = false;
         }
-    }
-
-    IEnumerator ColorPause()
-    {
-        Debug.Log("Coroutine working...");
-        yield return new WaitForSeconds (0.1f);
-        HasTakenDamage();
-    }
-
-    IEnumerator DamagePause()
-    {
-        yield return new WaitForSeconds (3.0f);
-        Debug.Log("Taking continuous damage");
-        ContinuousDamage();       
     }
 }
