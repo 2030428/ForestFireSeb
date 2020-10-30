@@ -76,7 +76,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba67a94ca4059fe4188d7916fefb8740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HealthBar: {fileID: 0}
   FireArea: {fileID: 2345313521129468844}
+  maxHealth: 100
+  currentHealth: 0
 --- !u!65 &2345313521129468844
 BoxCollider:
   m_ObjectHideFlags: 0
