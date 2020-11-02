@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,21 +10,15 @@ public class PlayerIsOnFire : MonoBehaviour
 {
     public healthBar HealthBar;
     public GameObject DamageColor;
-    public GameObject player;
 
     public BoxCollider FireArea;
 
-    public bool takenAnyDamage, ColorPauseActive, DamagePauseActive;
+    public bool takenAnyDamage, stillInFire = false;
     public int maxHealth = 100;                                 //sets player max health
     public int currentHealth, damage;                                   //creates a value for current player health
-    public int playerXint, playerYint, playerZint;
-
-    public float playerX, playerY, playerZ;
-
 
     private void Awake()
     {
-
         DamageColor = GameObject.Find("DamageImage");
         if (DamageColor)
             Debug.Log("Image Found");
@@ -53,9 +48,12 @@ public class PlayerIsOnFire : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Burns");
-        TakeDamage();
-        Debug.Log(currentHealth);
+     //   if (FireArea.gameObject.CompareTag("FireArea"))
+        {
+            Debug.Log("Burns");
+            TakeDamage();
+            Debug.Log(currentHealth);
+        }
     }
 
     void TakeDamage()
@@ -64,14 +62,14 @@ public class PlayerIsOnFire : MonoBehaviour
         damage = 10;
         currentHealth -= damage;
         HealthBar.SetHealth(currentHealth);
-        DamageColor.transform.Translate(0.0f, 0.0f, +4.0f);
-        StartCoroutine(ColorPause());        
-    }     
+        DamageColor.transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
+        StartCoroutine(ColorPause());
+    }
 
     IEnumerator ColorPause()
     {
         Debug.Log("Coroutine working...");
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.3f);
         takenAnyDamage = true;
         HasTakenDamage();
     }
@@ -79,9 +77,18 @@ public class PlayerIsOnFire : MonoBehaviour
     {
         if (takenAnyDamage)
         {
-            DamageColor.transform.Translate(0.0f, 0.0f, -4.0f);
+            DamageColor.transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
             Debug.Log("Has now taken damage");
             takenAnyDamage = false;
         }
     }
+    //void OnTriggerStay(Collider other)
+    //{
+    //    for (int i=10; i > 0; i--)
+    //    {
+    //        Debug.Log("Collider still in fire");
+    //        Thread.Sleep(2000);
+    //        TakeDamage();
+    //    }
+    //}
 }

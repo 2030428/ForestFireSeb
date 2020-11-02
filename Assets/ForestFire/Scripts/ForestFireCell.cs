@@ -16,6 +16,7 @@ public class ForestFireCell : MonoBehaviour
         Alight,
         Rock,
         Burnt,
+        Balloon,
     }
 
     public int cellFuel; // integer to store the amount of fuel in the cell
@@ -30,8 +31,10 @@ public class ForestFireCell : MonoBehaviour
     public GameObject treeObject; // reference to tree visual object
     public GameObject leaves; // reference to leaves visual object
     public GameObject rockObject; // reference to rock visual object
+    public GameObject balloonObject; //reference to balloon object
     
     public BoxCollider FireArea;        //reference to collider for fire detection
+    public BoxCollider BalloonContact;  //reference to collider for balloon contact detection
 
     public GameObject treeFireFVX; // reference to tree fire vfx
     public GameObject grassFireFVX; // reference to grass fire vfx
@@ -76,6 +79,7 @@ public class ForestFireCell : MonoBehaviour
         treeObject.SetActive(true);
         
         FireArea.enabled = false;               //set box collider to inactive in this state
+   //     BalloonContact.enabled = false;         //set box collider to inactive in this state   
 
     }
 
@@ -88,6 +92,7 @@ public class ForestFireCell : MonoBehaviour
         rockObject.SetActive(false);
         
         FireArea.enabled = false;               //set box collider to inactive in this state
+  //      BalloonContact.enabled = false;         //set box collider to inactive in this state   
 
     }
 
@@ -102,6 +107,8 @@ public class ForestFireCell : MonoBehaviour
             rockObject.SetActive(true);
             
             FireArea.enabled = false;               //set box collider to inactive in this state
+   //         BalloonContact.enabled = false;         //set box collider to inactive in this state   
+
         }
     }
 
@@ -129,6 +136,8 @@ public class ForestFireCell : MonoBehaviour
             _fireVisualEffect = currentFire.GetComponent<VisualEffect>();
             
             FireArea.enabled = true;                //set box collider to active in this state
+     //       BalloonContact.enabled = false;         //set box collider to inactive in this state   
+
         }
     }
 
@@ -148,7 +157,24 @@ public class ForestFireCell : MonoBehaviour
         cellState = State.Burnt;
         groundMeshRenderer.material = groundMaterialBurnt;
         
-       FireArea.enabled = false;               //set box collider to inactive in this state
+        FireArea.enabled = false;               //set box collider to inactive in this state
+    //    BalloonContact.enabled = false;         //set box collider to inactive in this state   
+
 
     }
+
+    public void SetBalloon()
+    {
+        cellState = State.Balloon;
+
+        groundMeshRenderer.material = groundMaterialGrass;
+        cellFuel = 0;
+        balloonObject.SetActive(true);
+
+        FireArea.enabled = false;               //set box collider to inactive in this state
+        BalloonContact.enabled = true;          //set box collider to active in this state 
+      //  Debug.Log("State Balloon");
+
+    }
+
 }

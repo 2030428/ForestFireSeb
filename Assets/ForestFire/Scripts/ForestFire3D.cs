@@ -15,6 +15,8 @@ public class ForestFire3D : MonoBehaviour
     public int rockChance; // the percentage chance a cell is assigned as rock
     public int grassChance; // the percentage chance a cell is assigned as grass
 
+    public int balloonNumber = 0; //number of balloons to appear
+
     public GameObject cellPrefab; // gameobject prefab used to represent a cell on the grid   
 
     public ForestFireCell[,] forestFireCells = new ForestFireCell[0, 0]; // array of ForestFireCell objects
@@ -103,16 +105,22 @@ public class ForestFire3D : MonoBehaviour
 
     private void RandomiseGrid()
     {
-        nlight = 2; // how many trees to set on fire
+        nlight = 6; // how many trees to set on fire
                       // iterate through every cell in the cell in the grid and set its state to dead, decide what type of object is present and if flammable assign an amount of fuel
 
         for (int xCount = 0; xCount < gridSizeX; xCount++)
         {
             for (int yCount = 0; yCount < gridSizeY; yCount++)
             {
+
                 xC = UnityEngine.Random.Range(0, 100); // generate a random number between 0 and 100
 
-                if (xC < rockChance) // if the random value is less than rock chance, assign cell as rock
+                if (xC < balloonNumber)
+                {
+                    forestFireCells[xCount, yCount].SetBalloon();
+                }
+
+                else if (xC < rockChance) // if the random value is less than rock chance, assign cell as rock
                 {                   
                     forestFireCells[xCount, yCount].SetRock();
                 }
@@ -331,6 +339,10 @@ public class ForestFire3D : MonoBehaviour
                 else if (forestFireCells[xCount, yCount].cellState == ForestFireCell.State.Tree)
                 {
                     forestFireCells[xCount, yCount].SetTree();
+                }
+                else if (forestFireCells[xCount, yCount].cellState == ForestFireCell.State.Balloon)
+                {
+                    forestFireCells[xCount, yCount].SetBalloon();
                 }
             }
         }
