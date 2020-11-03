@@ -1,94 +1,62 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Timers;
+using UnityEngine.PlayerLoop;
 
 public class PlayerIsOnFire : MonoBehaviour
 {
-    public healthBar HealthBar;
-    public GameObject DamageColor;
+    public healthBar HealthBar;                                 //creates healthbar object relating to healthbar script
 
-    public BoxCollider FireArea;
+    public BoxCollider FireArea;                                //creates box collider for the area of the fire damage effect
 
-    public bool takenAnyDamage, stillInFire = false;
-    public int maxHealth = 100;                                 //sets player max health
-    public int currentHealth, damage;                                   //creates a value for current player health
+    private float damageTime = 3f;
+    private float timer = 0f;
+
+    public bool takenAnyDamage, inFire = false;            //creates bools to see if the player has taken damage and to see if they are still in the fire    
+
 
     private void Awake()
     {
-        DamageColor = GameObject.Find("DamageImage");
-        if (DamageColor)
-            Debug.Log("Image Found");
-        else
-            Debug.Log("Image not found");
-
-        HealthBar = FindObjectOfType<healthBar>();
-        if (HealthBar)
-            Debug.Log("Health bar is found!!");
-        else
-            Debug.Log("Not found, try again!!");
+        HealthBar = FindObjectOfType<healthBar>();              //finds object within scene as defined by healthbar
+        //if (HealthBar)                                          //debugs whether it is discovered or not
+        //    Debug.Log("Health bar is found!!");
+        //else
+        //    Debug.Log("Not found, try again!!");
     }
 
-    void Start()
-    {
-        currentHealth = maxHealth;                              //sets current health value
-        HealthBar.setMaxHealth(maxHealth);                      //   
-    }
 
-    void Update()
+void Update()
     {
-        if (currentHealth == 0)
+        if (inFire)
         {
-            SceneManager.LoadScene(sceneName: "Dead");
+            if (damageTime > timer)
+            {
+                timer += Time.deltaTime;
+            }
+            else
+            {
+                HealthBar.TakeDamage();
+                timer = 0f;
+            }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-     //   if (FireArea.gameObject.CompareTag("FireArea"))
-        {
-            Debug.Log("Burns");
-            TakeDamage();
-            Debug.Log(currentHealth);
-        }
+        timer = 0f;
+        inFire = true;
+        Debug.Log("Collider entered");                               //debug statement of current health 
     }
 
-    void TakeDamage()
-    { 
-        takenAnyDamage = true;
-        damage = 10;
-        currentHealth -= damage;
-        HealthBar.SetHealth(currentHealth);
-        DamageColor.transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
-        StartCoroutine(ColorPause());
-    }
 
-    IEnumerator ColorPause()
+
+    private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Coroutine working...");
-        yield return new WaitForSeconds(0.3f);
-        takenAnyDamage = true;
-        HasTakenDamage();
+        timer = 0f;
+        inFire = false;
     }
-    void HasTakenDamage()
-    {
-        if (takenAnyDamage)
-        {
-            DamageColor.transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
-            Debug.Log("Has now taken damage");
-            takenAnyDamage = false;
-        }
-    }
-    //void OnTriggerStay(Collider other)
-    //{
-    //    for (int i=10; i > 0; i--)
-    //    {
-    //        Debug.Log("Collider still in fire");
-    //        Thread.Sleep(2000);
-    //        TakeDamage();
-    //    }
-    //}
 }

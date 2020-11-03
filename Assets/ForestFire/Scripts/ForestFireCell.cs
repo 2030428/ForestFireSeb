@@ -79,7 +79,7 @@ public class ForestFireCell : MonoBehaviour
         treeObject.SetActive(true);
         
         FireArea.enabled = false;               //set box collider to inactive in this state
-   //     BalloonContact.enabled = false;         //set box collider to inactive in this state   
+        BalloonContact.enabled = false;         //set box collider to inactive in this state   
 
     }
 
@@ -92,7 +92,7 @@ public class ForestFireCell : MonoBehaviour
         rockObject.SetActive(false);
         
         FireArea.enabled = false;               //set box collider to inactive in this state
-  //      BalloonContact.enabled = false;         //set box collider to inactive in this state   
+        BalloonContact.enabled = false;         //set box collider to inactive in this state   
 
     }
 
@@ -107,7 +107,7 @@ public class ForestFireCell : MonoBehaviour
             rockObject.SetActive(true);
             
             FireArea.enabled = false;               //set box collider to inactive in this state
-   //         BalloonContact.enabled = false;         //set box collider to inactive in this state   
+            BalloonContact.enabled = false;         //set box collider to inactive in this state   
 
         }
     }
@@ -136,7 +136,7 @@ public class ForestFireCell : MonoBehaviour
             _fireVisualEffect = currentFire.GetComponent<VisualEffect>();
             
             FireArea.enabled = true;                //set box collider to active in this state
-     //       BalloonContact.enabled = false;         //set box collider to inactive in this state   
+            BalloonContact.enabled = false;         //set box collider to inactive in this state   
 
         }
     }
@@ -158,7 +158,7 @@ public class ForestFireCell : MonoBehaviour
         groundMeshRenderer.material = groundMaterialBurnt;
         
         FireArea.enabled = false;               //set box collider to inactive in this state
-    //    BalloonContact.enabled = false;         //set box collider to inactive in this state   
+        BalloonContact.enabled = false;         //set box collider to inactive in this state   
 
 
     }
@@ -167,13 +167,13 @@ public class ForestFireCell : MonoBehaviour
     {
         cellState = State.Balloon;
 
+        cellFuel = 100;
+
         groundMeshRenderer.material = groundMaterialGrass;
-        cellFuel = 0;
         balloonObject.SetActive(true);
 
         FireArea.enabled = false;               //set box collider to inactive in this state
         BalloonContact.enabled = true;          //set box collider to active in this state 
-      //  Debug.Log("State Balloon");
 
     }
 
