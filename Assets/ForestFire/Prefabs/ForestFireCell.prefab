@@ -2790,7 +2790,7 @@ Transform:
   m_GameObject: {fileID: 5853844329248246124}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.5843727, y: -3.65, z: -0.03851798}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3609, y: 2.0669, z: 1.6506}
   m_Children: []
   m_Father: {fileID: 462993195756630498}
   m_RootOrder: 1
@@ -2821,13 +2821,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 0}
-  DamageColor: {fileID: 0}
   FireArea: {fileID: 2345313521129468844}
-  takenAnyDamage: 0
-  stillInFire: 0
-  maxHealth: 100
-  currentHealth: 0
-  damage: 0
+  inFire: 0
 --- !u!1 &8474914984982905589
 GameObject:
   m_ObjectHideFlags: 0
@@ -3189,11 +3184,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f27d41269522e944bae44779f1b9e731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: {fileID: 0}
   BalloonArea: {fileID: 8719464492678100627}
   Balloon: {fileID: 8474914984982905589}
-  maxPlayerScore: 0
-  currentPlayerScore: 0
-  pointValue: 0
+  maxSpeed: 5
+  acceleration: 0.05
+  balloonY: 0
+  balloonHit: 0
+  hasBeenTriggered: 0
+  balloonHasScaled: 0
 --- !u!1001 &1289785187829813023
 PrefabInstance:
   m_ObjectHideFlags: 0
