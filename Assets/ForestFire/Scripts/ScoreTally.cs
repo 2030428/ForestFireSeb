@@ -24,7 +24,7 @@ public class ScoreTally : MonoBehaviour
     void Start()
     {
         currentPlayerScore = 0;                                     //defines current player score
-        maxPlayerScore = 200;                                       //defines max score
+        maxPlayerScore = 100;                                       //defines max score
         playerScore.text = "Score: 0";                              //sets initial score to TMP
     }
 
