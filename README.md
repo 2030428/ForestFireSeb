@@ -9,4 +9,5 @@ The second addition applied is a scoring system. As the player moves around the 
 Classes created: PlayerIsOnFire, BalloonContact, ExitGame, ScoreTally, HealthBar, TryAgain, StillInTheFire.
 
 Classes modified: ForestFire3D - created Balloon state, added fire collider enabled/disabled for appropriate states
-                  Minimap - add a representation for the balloon state cells so they show as blue on minimap
+
+Minimap - add a representation for the balloon state cells so they show as blue on minimap
