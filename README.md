@@ -10,4 +10,4 @@ Classes created: PlayerIsOnFire, BalloonContact, ExitGame, ScoreTally, HealthBar
 
 Classes modified: ForestFire3D - created Balloon state, added fire collider enabled/disabled for appropriate states
 
-Minimap - add a representation for the balloon state cells so they show as blue on minimap
+                  Minimap - add a representation for the balloon state cells so they show as blue on minimap
